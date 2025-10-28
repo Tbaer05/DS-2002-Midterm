@@ -27,9 +27,9 @@ DS-2002-Midterm
 
    * Source: `AdventureWorks` database
    * Fact and dimension tables: `SalesOrderHeader`, `SalesOrderDetail`
-3. **Optional NoSQL**
+3. **NoSQL**
 
-   * MongoDB can be used as an alternative dimension store (configured in ETL notebook).
+   * MongoDB can be used as an alternative dimension store, and it can be found in  the ETL notebook
 
 ## ETL Pipeline
 
