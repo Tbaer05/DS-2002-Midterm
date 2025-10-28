@@ -105,8 +105,8 @@ ORDER BY d.FullDate;
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/Tbaer05/DS-2002-Midterm.git
-cd DS-2002-Midterm
+[git clone https://github.com/Tbaer05/DS-2002-Midterm.git
+cd DS-2002-Midterm](https://github.com/Tbaer05/DS-2002-Midterm.git)
 ```
 
 2. Install dependencies:
