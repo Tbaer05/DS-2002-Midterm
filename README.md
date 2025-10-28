@@ -8,7 +8,7 @@ This project demonstrates a full ETL pipeline integrating data from multiple sou
 
 ```
 DS-2002-Midterm/
-├── ETL_notebook.ipynb     
+├── Tesher Baer DS2002 Midterm.ipynb     
 ├── customers.csv           
 ├── products.csv            
 ├── products.json           
