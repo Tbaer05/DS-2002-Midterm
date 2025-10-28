@@ -7,12 +7,13 @@ This project demonstrates a full ETL pipeline integrating data from multiple sou
 ## Project Structure
 
 ```
-DS-2002-Midterm/
+DS-2002-Midterm
+├── AdventureWorks_MySQL.sql
 ├── Tesher Baer DS2002 Midterm.ipynb     
 ├── customers.csv           
 ├── products.csv            
 ├── products.json           
-├── SQL_queries.sql        
+├── Midterm SQL Queries.sql        
 ├── README.md               
 ```
 
