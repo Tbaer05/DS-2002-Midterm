@@ -116,16 +116,12 @@ cd DS-2002-Midterm](https://github.com/Tbaer05/DS-2002-Midterm.git)
 pip install pandas sqlalchemy pymysql pymongo
 ```
 
-3. Update connection info:
 
-   * MySQL: `user`, `password`, `host`
-   * MongoDB: connection URI in the notebook
-
-4. Run the ETL notebook:
+3. Run the ETL notebook:
 
    * Execute all cells to extract, transform, and load data into `sales_mart`.
 
-5. Run the SQL queries in MySQL Workbench or any SQL client connected to `sales_mart`.
+4. Run the SQL queries in MySQL Workbench or any SQL client connected to `sales_mart`.
 
 A note on the .DS_Store file. I cannot seem to remove it from Git regardless of the number of commands to remove that I run in my terminal. Please ignore it's presence in the repository. 
 
