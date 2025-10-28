@@ -2,18 +2,18 @@
 
 ## Overview
 
-This project demonstrates a full ETL (Extract, Transform, Load) pipeline integrating data from multiple sources, transforming it, and loading it into a centralized data warehouse (`sales_mart`). Analytical SQL queries are then executed to provide insights into sales performance.
+This project demonstrates a full ETL pipeline integrating data from multiple sources, transforming it, and loading it into a centralized data warehouse (`sales_mart`). Analytical SQL queries are then executed to provide insights into sales performance.
 
 ## Project Structure
 
 ```
 DS-2002-Midterm/
-├── ETL_notebook.ipynb      # Jupyter Notebook with the ETL pipeline
-├── customers.csv           # Customer dimension source
-├── products.csv            # Product dimension source
-├── products.json           # Converted product JSON file
-├── SQL_queries.sql         # Analytical SQL queries
-├── README.md               # Project documentation
+├── ETL_notebook.ipynb     
+├── customers.csv           
+├── products.csv            
+├── products.json           
+├── SQL_queries.sql        
+├── README.md               
 ```
 
 ## Data Sources
@@ -32,7 +32,7 @@ DS-2002-Midterm/
 
 ## ETL Pipeline
 
-The ETL pipeline is implemented in Python (Jupyter Notebook) with `pandas` and `SQLAlchemy`.
+The ETL pipeline is implemented in Python using a Jupyter Notebook with `pandas` and `SQLAlchemy`.
 
 ### Steps:
 
@@ -51,46 +51,52 @@ The ETL pipeline is implemented in Python (Jupyter Notebook) with `pandas` and `
 
      * `DimDate`, `DimCustomer`, `DimProduct`, `FactSales`.
 
-> 🔑 Note: MongoDB connection is optional; credentials are highlighted in the notebook for personal configuration.
-
 ## SQL Queries
 
-1. **Total Sales by Customer**
+1. **Total Sales by Customer and Product ** 
 
 ```sql
 SELECT 
-    c.CustomerID, 
+    c.CustomerID,
+    c.CustomerType,
+    p.ProductID,
+    p.Name AS ProductName,
     SUM(f.TotalAmount) AS TotalSales
 FROM FactSales f
 JOIN DimCustomer c ON f.CustomerID = c.CustomerID
-GROUP BY c.CustomerID
+JOIN DimProduct p ON f.ProductID = p.ProductID
+GROUP BY c.CustomerID, c.CustomerType, p.ProductID, p.Name
 ORDER BY TotalSales DESC
 LIMIT 1000;
 ```
 
-2. **Total Sales by Product**
+2. **Total Sales by Date with Customer Info**
 
 ```sql
 SELECT 
-    p.ProductID, 
-    p.Name AS ProductName, 
+    d.FullDate,
+    c.CustomerID,
+    c.CustomerType,
+    SUM(f.TotalAmount) AS TotalSales
+FROM FactSales f
+JOIN DimCustomer c ON f.CustomerID = c.CustomerID
+JOIN DimDate d ON DATE(f.OrderDate) = d.FullDate
+GROUP BY d.FullDate, c.CustomerID, c.CustomerType
+ORDER BY d.FullDate;
+```
+
+3. **Total Sales by Product and Date**
+
+```sql
+SELECT 
+    d.FullDate,
+    p.ProductID,
+    p.Name AS ProductName,
     SUM(f.TotalAmount) AS TotalSales
 FROM FactSales f
 JOIN DimProduct p ON f.ProductID = p.ProductID
-GROUP BY p.ProductID, p.Name
-ORDER BY TotalSales DESC
-LIMIT 1000;
-```
-
-3. **Total Sales by Date**
-
-```sql
-SELECT 
-    d.FullDate, 
-    SUM(f.TotalAmount) AS TotalSales
-FROM FactSales f
 JOIN DimDate d ON DATE(f.OrderDate) = d.FullDate
-GROUP BY d.FullDate
+GROUP BY d.FullDate, p.ProductID, p.Name
 ORDER BY d.FullDate;
 ```
 
@@ -120,14 +126,6 @@ pip install pandas sqlalchemy pymysql pymongo
 
 5. Run the SQL queries in MySQL Workbench or any SQL client connected to `sales_mart`.
 
-## Submission Instructions
-
-1. Include **ETL Notebook** (`ETL_notebook.ipynb`) and **data files** (`customers.csv`, `products.csv`, `products.json`).
-2. Include **SQL Queries** (`SQL_queries.sql`).
-3. Upload all files to your GitHub repository: `DS-2002-Midterm`.
-
 ## Author
-Tesher Baer
 
-**Your Name:** `<Your Name>`
-**GitHub:** [https://github.com/<YOUR_USERNAME>](https://github.com/<YOUR_USERNAME>)
+**Tesher Baer**
