@@ -127,6 +127,8 @@ pip install pandas sqlalchemy pymysql pymongo
 
 5. Run the SQL queries in MySQL Workbench or any SQL client connected to `sales_mart`.
 
+A note on the .DS_Store file. I cannot seem to remove it from Git regardless of the number of commands to remove that I run in my terminal. Please ignore it's presence in the repository. 
+
 ## Author
 
 **Tesher Baer**
